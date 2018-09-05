@@ -19,7 +19,7 @@ ul{
 
 .button_1{
     height:38px;
-    background:#f95976;
+    background:#ef9758;
     border:none;
     padding-left:20px;
     padding-right:20px;
@@ -40,7 +40,7 @@ header{
     color:#ffffff;
     padding-top:50px;
     min-height:70px;
-    border-bottom:#f95976 3px solid;
+    border-bottom:#ef9758 3px solid;
 }
 
 header a{
@@ -71,12 +71,12 @@ header nav{
 }
 
 header .highlight, header .current a{
-    color:#f95976;
+    color:#ef9758;
     font-weight: bold;
 }
 
 header a:hover{
-    color:#f95976;
+    color:#ef9758;
     font-weight: bold;
 }
 
@@ -84,6 +84,7 @@ header a:hover{
 #showcase{
     min-height:400px;
     background-image: url('../img/showcase.jpg');
+    background-size: 100%;
     background-repeat: no-repeat;
     text-align:center;
     color:#ffffff;
@@ -146,20 +147,20 @@ article#maincol{
     width:65%;
 }
 
-/* How To Help */
-ul#howtohelp li{
+/* Portfolio */
+ul#portfolio li{
     list-style: none;
     padding:20px;
     border: #cccccc solid 1px;
     margin-bottom:5px;
-    background:#e0cb57;
+    background:#ef9758;
 }
 
 footer{
     padding:20px;
     margin-top:20px;
     color:#ffffff;
-    background-color:#e0cb57;
+    background-color:#ef9758;
     text-align:center;
 }
 
