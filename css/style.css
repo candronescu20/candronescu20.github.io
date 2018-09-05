@@ -18,11 +18,13 @@ ul{
 }
 
 .button_1{
-    height:38px;
+    height:30px;
     background:#ef9758;
     border:none;
-    padding-left:20px;
-    padding-right:20px;
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:1px;
+    padding-bottom:1px;
     color:#ffffff;
 }
 
@@ -98,13 +100,14 @@ header a:hover{
 
 /* Newsletter*/
 #newsletter{
-    padding:15px;
+    padding:20px;
     color:#ffffff;
     background:#595050;
 }
 
-#newsletter h1{
+#newsletter h4{
     float:left;
+    margin-top:5px;
 }
 
 #newsletter form{
@@ -115,7 +118,7 @@ header a:hover{
 #newsletter input[type="email"]{
     padding:5px;
     height:25px;
-    width:250px;
+    width:230px;
 }
 
 /* Boxes*/
