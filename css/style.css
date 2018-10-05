@@ -140,14 +140,6 @@ header a:hover{
     height:20%;
 }
 
-#boxes .boxx{
-    float:left;
-    text-align:center;
-    width:30%;
-    padding:10px;
-    color:#2b4166;
-}
-
 /* Sidebar */
 aside#sidebar{
     float:right;
