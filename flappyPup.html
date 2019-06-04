@@ -1,0 +1,172 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Processing Demo</title>
+<script type="text/javascript" src="processingg.js"></script>
+</head>
+<body>
+
+
+<script type="text/processing">
+/*
+*Nervous Flying Corgi That is Deathly Allergic to Pizza Game
+*Author: Christina Andronescu
+*Version 1.1
+*params: (usable variables necessary for this program)
+*/
+
+PImage bg; PImage pup; PImage pup2; PImage costume; PImage start;
+int x; int dx; int dy; int dVy;
+int numChoc = 7;
+int score; int highScore; 
+int gameState; PImage choc; int[] kx = new int[numChoc]; int[] ky = new int[numChoc]; int count;
+
+void setup(){
+  size(800,600);
+  gameState = -1;
+  bg = loadImage("./img/bg.png");  //load the images used
+  start = loadImage("./img/start.png");
+  pup = loadImage("./img/pup.png");
+  pup2 = loadImage("./img/costume.png");
+  choc = loadImage("./img/choc.png"); //actually the pizza code but too lazy to change name everywhere
+  costume = pup;
+  dVy = 2;
+  dx = 50;
+  dy = 100;
+  for(int i =0; i < numChoc ; i++){
+    kx[i] = width + (int)random(50, 200) + 200*i;
+    ky[i] = height/2 + (int)random(-200,200);
+  }
+}
+
+void draw(){
+  count++;
+  move();
+  if(score > highScore){   //making the highest score the actual high score
+        highScore = score;
+  }
+  if(gameState==0){
+  image(bg, x, 0);
+  image(bg, x+bg.width-5, 0);
+  if(x < -bg.width){
+    x=0;
+  }
+  
+//pizza code 
+  for(int i = 0; i<numChoc ; i++){
+    kx[i]-= 2;
+    if(kx[i] < -10){
+      score++;
+      kx[i] = width + (int)random(50, 200);
+      ky[i] = height/2 + (int)random(-200,200);
+    }
+    if(abs((int)((dx+35)-(kx[i]+7))) < 22 && abs((int)((dy+34) - (ky[i]+41))) < 74){
+      gameState=1;
+    }
+    image(choc, kx[i], ky[i]);
+  }
+    
+  //pup code 
+  image(costume, dx, dy);
+  dy = dy + dVy; //gravity
+  if(count%2==0){
+    dVy++;
+  }
+  x--;
+  checkPup();
+  }
+    
+  //dog dies :(
+  if (gameState==1){
+    
+    //begin button
+    textSize(30); //size of text
+    text("corgi died! how dare you!", 90, 146);
+    fill(191, 239, 234); //color of button
+    rect(90,160,240,45,10); //background of button, the last number rounds it like a circle
+    fill(0);
+    
+    //end button
+    if(mouseX > 90 && mouseY > 160 && mouseX < 330 && mouseY < 205){
+      if(mousePressed){
+        dy=100;
+        dVy = 2;
+        dx = 50;
+        score = 0;
+        for(int i =0; i < numChoc ; i++){
+          kx[i] = width + (int)random(50, 200) + 200*i;
+          ky[i] = height/2 + (int)random(-200,200);
+        }
+        gameState=0;  
+      }
+    //reset game
+      else{ //hover but not click 
+        fill(189, 247, 183);
+        rect(90,160, 240, 45, 10);
+        fill(0);
+        text("play again?", 100,196);  //button text
+      }
+    }
+    else{  //not hovering over 
+      text("click me!", 100, 196);  //button text
+    }
+  }
+  //score
+  fill(0);
+  textSize(18);
+  text("score: " + score, width - 130, 30);
+  text("high score: " + highScore, width - 130, 50);
+  
+  //start screen
+  if(gameState == -1){
+    image(start,0,0);
+    fill(0,0,0, 151);
+    textSize(24);
+    text("*click to play!*", 300, 250);
+    if(mousePressed && mouseX>250){
+      gameState = 0;
+    }   
+    text("Nervous Flying Corgi That is Deathly Allergic to Pizza Game", 70, 100);
+    text("Move:  move mouse", 260, 390);
+    text("Jump:  left click", 260, 420); 
+    text("Avoid the pizza!", 260, 450); 
+    
+    fill(80,80,80, 255);
+    text("Controls", 335, 320);
+    noFill();
+    rect(250, 360, 280,95, 5);
+    text("(corgi gets very nervous if it doesn't move)", 125, 500);
+  }
+}
+
+//makes the pup move
+void move(){
+  if (mouseX > dx){    
+    dx+=4;
+  }
+  else if(mouseX < dx){
+    dx-=4;
+  }
+}
+//pup "jumps"
+void mousePressed(){
+  if(mouseButton == LEFT){
+    dVy = -10;
+  }
+  costume = pup2;
+}
+void mouseReleased(){
+  costume = pup; 
+}
+
+void checkPup(){
+  if(dy > height || dy < -80){
+    gameState =1;
+  }
+}
+
+</script>
+
+<canvas id="sketch" style="border: 1px solid black;"></canvas>
+</body>
+</html>
