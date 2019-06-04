@@ -1,0 +1,67 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Processing Demo</title>
+<script type="text/javascript" src="processingg.js"></script>
+</head>
+<body>
+
+
+<script type="text/processing">
+//trying to make a ball bounce
+//Author: Christina Andronescu
+//Version 1.0
+
+int x;
+int y;
+int r;
+int Vx;
+int Vy;
+
+
+void setup(){
+  size(400,500); 
+  x=0; // establishes the starting x coordinate
+  y=0;  // establishes the starting y coordinate
+  r=30;  //radius
+  r=30;
+  Vx = 3;  //x velocity
+  Vy = 3;  //y velocity
+}
+
+void draw(){
+  background(0); 
+  ellipse(x,y,r,r);  //(x,y) = the center
+  updatePosition();  //starts each loop with a fresh slate
+  bounce();
+}
+
+void bounce(){
+  if (x > width - r/2){
+    Vx *= -1;  //multiplying by -1 flips the direction 
+    fill(random(0,255), random(0,255), random(0,255));  //changes the color of the ball each time it hits a wall
+  } 
+  if (x < 0){
+    Vx *= -1;
+    fill(random(0,255), random(0,255), random(0,255));
+  }
+  if (y > height - r/2){
+    Vy *= -1;
+    fill(random(0,255), random(0,255), random(0,255));
+  }
+  if (y < 0){
+    Vy *= -1;
+    fill(random(0,255), random(0,255), random(0,255));
+  }
+}
+
+void updatePosition(){  //starts each loop with a fresh slate
+  x += Vx;
+  y += Vy;
+}
+
+</script>
+
+<canvas id="sketch" style="border: 1px solid black;"></canvas>
+</body>
+</html>
